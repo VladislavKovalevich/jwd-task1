@@ -6,4 +6,5 @@ public interface ArraySorts {
     void bubbleSort(CustomArray customArray);
     void selectionSort(CustomArray customArray);
     void insertionSort(CustomArray customArray);
+    void streamSort(CustomArray customArray);
 }

@@ -83,4 +83,54 @@ public class ArrayOperationTest {
         arrayOperations.changeArrayContent(customArray);
         Assert.assertEquals(customArray.getArray(), expected.getArray());
     }
+
+
+    @Test
+    public void testSumStream(){
+        int expectedSum = 0;
+        int actualSum = arrayOperations.getSumStream(customArray);
+        Assert.assertEquals(actualSum, expectedSum);
+    }
+
+    @Test
+    public void testAverageValueStream(){
+        double expectedAverageValue = 0.0;
+        double actualAverageValue = arrayOperations.getAverageValueStream(customArray);
+        Assert.assertEquals(actualAverageValue, expectedAverageValue);
+    }
+
+    @Test
+    public void testMinNumberStream(){
+        int expectedMinNumber = -6;
+        int actualMinNumber = arrayOperations.getMinNumberStream(customArray);
+        Assert.assertEquals(actualMinNumber, expectedMinNumber);
+    }
+
+    @Test
+    public void testMaxNumberStream(){
+        int expectedMaxNumber = 5;
+        int actualMaxNumber = arrayOperations.getMaxNumberStream(customArray);
+        Assert.assertEquals(actualMaxNumber, expectedMaxNumber);
+    }
+
+    @Test
+    public void testCountOfPositiveNumbersStream(){
+        long expected = 2;
+        long actual = arrayOperations.getCountOfPositiveNumbersStream(customArray);
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCountOfNegativeNumbersStream(){
+        long expected = 2;
+        long actual = arrayOperations.getCountOfNegativeNumbersStream(customArray);
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testChangeArrayContentStream(){
+        CustomArray expected = new CustomArray(Arrays.asList(0, 5, 2, 0));
+        arrayOperations.changeArrayContentStream(customArray);
+        Assert.assertEquals(customArray.getArray(), expected.getArray());
+    }
 }

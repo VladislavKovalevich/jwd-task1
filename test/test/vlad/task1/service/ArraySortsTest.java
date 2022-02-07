@@ -57,4 +57,11 @@ public class ArraySortsTest {
         int[] expected = new int[]{-6, -1, 2, 5};
         Assert.assertEquals(customArray.getArray(), expected);
     }
+
+    @Test
+    public void testStreamSort(){
+        arraySorts.streamSort(customArray);
+        int[] expected = new int[]{-6, -1, 2, 5};
+        Assert.assertEquals(customArray.getArray(), expected);
+    }
 }

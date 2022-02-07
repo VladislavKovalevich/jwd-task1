@@ -3,6 +3,8 @@ package by.vlad.task1.service.impl;
 import by.vlad.task1.entity.CustomArray;
 import by.vlad.task1.service.ArraySorts;
 
+import java.util.Arrays;
+
 public class ArraySortsImpl implements ArraySorts {
 
     @Override
@@ -74,6 +76,18 @@ public class ArraySortsImpl implements ArraySorts {
             array[lastIndex] = key;
 
         }
+    }
+
+    @Override
+    public void streamSort(CustomArray customArray) {
+        int[] array = customArray.getArray();
+        int[] sortedArray;
+
+        sortedArray = Arrays.stream(array)
+                .sorted()
+                .toArray();
+
+        customArray.setArray(sortedArray);
     }
 
     private int binarySearch(int firstIndex, int lastIndex, int[] array, int element) {
