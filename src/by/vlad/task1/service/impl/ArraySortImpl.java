@@ -34,23 +34,23 @@ public class ArraySortsImpl implements ArraySorts {
 
         for (int i = 0; i < array.length; i++) {
 
-            int maxItemPos;
-            int maxItem;
+            int minItemPos;
+            int minItem;
 
-            maxItemPos = i;
-            maxItem = array[i];
+            minItemPos = i;
+            minItem = array[i];
 
             for (int j = i + 1; j < array.length; j++) {
 
-                if (array[j] < maxItem){
-                    maxItemPos = j;
-                    maxItem = array[j];
+                if (array[j] < minItem){
+                    minItemPos = j;
+                    minItem = array[j];
                 }
 
             }
 
-            array[maxItemPos] = array[i];
-            array[i] = maxItem;
+            array[minItemPos] = array[i];
+            array[i] = minItem;
         }
     }
 

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class CustomValidatorImpl implements CustomValidator {
     private static CustomValidatorImpl stringValidator;
+    private static final String PATTERN_STRING = "^(\\s*(\\-)?[1-9](\\d+)?\\s*)$";
 
     private CustomValidatorImpl(){
     }
@@ -19,15 +20,10 @@ public class CustomValidatorImpl implements CustomValidator {
         return stringValidator;
     }
 
-    private static final String PATTERN_STRING = "^(\\s*(\\-)?[1-9](\\d+)?\\s*)$";
-
     @Override
     public boolean validateString(String line) {
-        Pattern pattern;
-        Matcher matcher;
-
-        pattern = Pattern.compile(PATTERN_STRING);
-        matcher = pattern.matcher(line);
+        Pattern pattern = Pattern.compile(PATTERN_STRING);
+        Matcher matcher = pattern.matcher(line);
 
         return matcher.matches();
     }
