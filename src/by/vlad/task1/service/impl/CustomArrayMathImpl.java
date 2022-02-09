@@ -1,41 +1,53 @@
 package by.vlad.task1.service.impl;
 
 import by.vlad.task1.entity.CustomArray;
-import by.vlad.task1.service.ArrayOperation;
+import by.vlad.task1.service.CustomArrayMath;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
+import java.util.OptionalDouble;
+import java.util.OptionalInt;
 
-public class ArrayOperationImpl implements ArrayOperation {
+public class CustomArrayMathImpl implements CustomArrayMath {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public int getMinNumber(CustomArray customArray) {
+    public OptionalInt minNumber(CustomArray customArray) {
+        int[] array = customArray.getArray();
         int minValue = Integer.MAX_VALUE;
 
-        for (int i: customArray.getArray()){
+        if (array.length == 0){
+            return OptionalInt.empty();
+        }
+
+        for (int i: array){
             if (i < minValue){
                 minValue = i;
             }
         }
 
         logger.log(Level.INFO, "min = " + minValue);
-        return minValue;
+        return OptionalInt.of(minValue);
     }
 
     @Override
-    public int getMinNumberStream(CustomArray customArray) {
+    public OptionalInt minNumberStream(CustomArray customArray) {
         int[] array = customArray.getArray();
-        int min = Arrays.stream(array).min().getAsInt();
+        OptionalInt min = Arrays.stream(array).min();
         logger.log(Level.INFO, "min (stream) = " + min);
         return min;
     }
 
     @Override
-    public int getMaxNumber(CustomArray customArray) {
+    public OptionalInt maxNumber(CustomArray customArray) {
+        int[] array = customArray.getArray();
         int maxValue = Integer.MIN_VALUE;
+
+        if (array.length == 0){
+            return OptionalInt.empty();
+        }
 
         for (int i: customArray.getArray()){
             if (i > maxValue){
@@ -44,84 +56,77 @@ public class ArrayOperationImpl implements ArrayOperation {
         }
 
         logger.log(Level.INFO, "max = " + maxValue);
-        return maxValue;
+        return OptionalInt.of(maxValue);
     }
 
     @Override
-    public int getMaxNumberStream(CustomArray customArray) {
+    public OptionalInt maxNumberStream(CustomArray customArray) {
         int[] array = customArray.getArray();
-        int max = Arrays.stream(array).max().getAsInt();
+        OptionalInt max = Arrays.stream(array).max();
         logger.log(Level.INFO, "max (stream) = " + max);
         return max;
     }
 
     @Override
-    public void changeArrayContent(CustomArray customArray) {
-        int[] array = customArray.getArray();
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < 0){
-                array[i] = 0;
-            }
-        }
-
-        logger.log(Level.INFO, "elements were replaced " + Arrays.toString(array));
-        customArray.setArray(array);
-    }
-
-    @Override
-    public void changeArrayContentStream(CustomArray customArray) {
-        int[] array = customArray.getArray();
-        int[] changedArray = Arrays.stream(array).map(x -> x < 0 ? 0: x).toArray();
-        logger.log(Level.INFO, "elements were replaced (stream) " + Arrays.toString(changedArray));
-        customArray.setArray(changedArray);
-    }
-
-    @Override
-    public double getAverageValue(CustomArray customArray) {
+    public OptionalDouble averageValue(CustomArray customArray) {
         double averageValue;
         int sum = 0;
-        int itemsCount = customArray.getArray().length;
+        int[] array = customArray.getArray();
 
-        for (int i : customArray.getArray()) {
-            sum += i;
+        if (array.length == 0){
+            return OptionalDouble.empty();
         }
 
-        averageValue = (double) sum / itemsCount;
+        for (int element : array) {
+            sum += element;
+        }
+
+        averageValue = (double) sum / array.length;
 
         logger.log(Level.INFO, "average = " + averageValue);
-        return averageValue;
+        return OptionalDouble.of(averageValue);
     }
 
     @Override
-    public double getAverageValueStream(CustomArray customArray) {
+    public OptionalDouble averageValueStream(CustomArray customArray) {
         int[] array = customArray.getArray();
-        double average = Arrays.stream(array).average().getAsDouble();
+        OptionalDouble average = Arrays.stream(array).average();
         logger.log(Level.INFO, "average (stream) = " + average);
         return average;
     }
 
     @Override
-    public int getSum(CustomArray customArray) {
+    public OptionalInt sum(CustomArray customArray) {
+        int[] array = customArray.getArray();
         int sum = 0;
 
-        for (int i : customArray.getArray()) {
+        if (array.length == 0){
+            return OptionalInt.empty();
+        }
+
+        for (int i : array) {
             sum += i;
         }
 
         logger.log(Level.INFO, "sum = " + sum);
-        return sum;
+        return OptionalInt.of(sum);
     }
 
     @Override
-    public int getSumStream(CustomArray customArray) {
+    public OptionalInt sumStream(CustomArray customArray) {
         int[] array = customArray.getArray();
+
+        if (array.length == 0){
+            return OptionalInt.empty();
+        }
+
         int sum = Arrays.stream(array).sum();
         logger.log(Level.INFO, "sum (stream) = " + sum);
-        return sum;
+        return OptionalInt.of(sum);
     }
 
     @Override
-    public long getCountOfPositiveNumbers(CustomArray customArray) {
+    public long countOfPositive(CustomArray customArray) {
         long positiveNumbers = 0;
 
         for (int i : customArray.getArray()) {
@@ -136,7 +141,7 @@ public class ArrayOperationImpl implements ArrayOperation {
     }
 
     @Override
-    public long getCountOfPositiveNumbersStream(CustomArray customArray) {
+    public long countOfPositiveStream(CustomArray customArray) {
         int[] array = customArray.getArray();
         long result = Arrays.stream(array).filter(x -> x > 0).count();
         logger.log(Level.INFO, "count of positive (stream) = " + result);
@@ -144,7 +149,7 @@ public class ArrayOperationImpl implements ArrayOperation {
     }
 
     @Override
-    public long getCountOfNegativeNumbers(CustomArray customArray) {
+    public long countOfNegative(CustomArray customArray) {
         long negativeNumbers = 0;
 
         for (int i : customArray.getArray()) {
@@ -159,7 +164,7 @@ public class ArrayOperationImpl implements ArrayOperation {
     }
 
     @Override
-    public long getCountOfNegativeNumbersStream(CustomArray customArray) {
+    public long countOfNegativeStream(CustomArray customArray) {
         int[] array = customArray.getArray();
         long result = Arrays.stream(array).filter(x -> x < 0).count();
         logger.log(Level.INFO, "count of negative (stream) = " + result);

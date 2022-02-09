@@ -15,7 +15,7 @@ public class CustomArray {
     }
 
     public int[] getArray() {
-        return array;
+        return array.clone();
     }
 
     public void setArray(int[] array) {

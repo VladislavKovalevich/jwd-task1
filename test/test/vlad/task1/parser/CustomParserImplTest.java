@@ -1,6 +1,5 @@
 package test.vlad.task1.parser;
 
-import by.vlad.task1.exception.ParserException;
 import by.vlad.task1.parser.StringParser;
 import by.vlad.task1.parser.impl.StringParserImpl;
 import org.testng.Assert;
@@ -24,13 +23,8 @@ public class CustomParserImplTest {
     }
 
     @Test(dataProvider = "parseString")
-    public void testReadArrayFromFile(List<String> testString, List<Integer> expected) throws ParserException {
+    public void testReadArrayFromFile(List<String> testString, List<Integer> expected) {
         List<Integer> actual = stringParser.parseArray(testString);
         Assert.assertEquals(actual, expected);
-    }
-
-    @AfterMethod
-    public void tierDown(){
-        stringParser = null;
     }
 }

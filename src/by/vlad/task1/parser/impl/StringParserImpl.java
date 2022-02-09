@@ -1,6 +1,5 @@
 package by.vlad.task1.parser.impl;
 
-import by.vlad.task1.exception.ParserException;
 import by.vlad.task1.parser.StringParser;
 import by.vlad.task1.validator.impl.CustomValidatorImpl;
 import org.apache.logging.log4j.Level;
@@ -14,7 +13,7 @@ public class StringParserImpl implements StringParser {
     private static final Logger logger = LogManager.getLogger();
     private static final String DELIMITER = ",";
 
-    public List<Integer> parseArray(List<String> stringArray) throws ParserException {
+    public List<Integer> parseArray(List<String> stringArray) {
         List<Integer> arrayList = new ArrayList<>();
         CustomValidatorImpl stringValidator = CustomValidatorImpl.getInstance();
 
@@ -33,8 +32,8 @@ public class StringParserImpl implements StringParser {
         }
 
         if (arrayList.size() == 0){
-            logger.log(Level.ERROR, "list is empty");
-            throw new ParserException("list is empty");
+            logger.log(Level.WARN, "list is empty");
+           // throw new ParserException("list is empty");
         }
 
         return arrayList;

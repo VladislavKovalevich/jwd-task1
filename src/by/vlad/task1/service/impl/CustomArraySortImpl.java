@@ -1,11 +1,11 @@
 package by.vlad.task1.service.impl;
 
 import by.vlad.task1.entity.CustomArray;
-import by.vlad.task1.service.ArraySort;
+import by.vlad.task1.service.CustomArraySort;
 
 import java.util.Arrays;
 
-public class ArraySortImpl implements ArraySort {
+public class CustomArraySortImpl implements CustomArraySort {
 
     @Override
     public void bubbleSort(CustomArray customArray) {
@@ -26,6 +26,8 @@ public class ArraySortImpl implements ArraySort {
             }
 
         }
+
+        customArray.setArray(array);
     }
 
     @Override
@@ -52,6 +54,8 @@ public class ArraySortImpl implements ArraySort {
             array[minItemPos] = array[i];
             array[i] = minItem;
         }
+
+        customArray.setArray(array);
     }
 
     @Override
@@ -74,8 +78,9 @@ public class ArraySortImpl implements ArraySort {
             }
 
             array[lastIndex] = key;
-
         }
+
+        customArray.setArray(array);
     }
 
     @Override

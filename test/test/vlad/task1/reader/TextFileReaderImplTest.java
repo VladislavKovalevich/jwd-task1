@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TextFileReaderImplTest {
@@ -20,12 +21,12 @@ public class TextFileReaderImplTest {
 
     @DataProvider(name = "fileReader")
     public Object[][] createData(){
-        return new Object[][]{{"resource\\array.txt", " -1 , 5 ,  2  , -6"}};
+        return new Object[][]{{"resource\\array.txt", Arrays.asList(" -1 ,"," 5 ,"," 2  ,"," -6")}};
     }
 
     @Test(dataProvider = "fileReader")
-    public void testReadDataFromFile(String path, String expected) throws ReaderException {
+    public void testReadDataFromFile(String path, List<String> expected) throws ReaderException {
         List<String> actual = textFileReader.readArrayFromFile(path);
-        //Assert.assertEquals(actual, expected);
+        Assert.assertEquals(actual, expected);
     }
 }
