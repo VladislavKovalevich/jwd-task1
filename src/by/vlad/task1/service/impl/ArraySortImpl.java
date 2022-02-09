@@ -1,11 +1,11 @@
 package by.vlad.task1.service.impl;
 
 import by.vlad.task1.entity.CustomArray;
-import by.vlad.task1.service.ArraySorts;
+import by.vlad.task1.service.ArraySort;
 
 import java.util.Arrays;
 
-public class ArraySortsImpl implements ArraySorts {
+public class ArraySortImpl implements ArraySort {
 
     @Override
     public void bubbleSort(CustomArray customArray) {

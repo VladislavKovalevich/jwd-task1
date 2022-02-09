@@ -1,14 +1,14 @@
 package by.vlad.task1.service.impl;
 
 import by.vlad.task1.entity.CustomArray;
-import by.vlad.task1.service.ArrayOperations;
+import by.vlad.task1.service.ArrayOperation;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
-public class ArrayOperationsImpl implements ArrayOperations {
+public class ArrayOperationImpl implements ArrayOperation {
     private static final Logger logger = LogManager.getLogger();
 
     @Override

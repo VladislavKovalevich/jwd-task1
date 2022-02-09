@@ -1,4 +1,4 @@
-package by.vlad.task1.exceptions;
+package by.vlad.task1.exception;
 
 public class ParserException extends Exception {
     public ParserException() {

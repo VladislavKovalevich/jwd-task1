@@ -1,4 +1,4 @@
-package by.vlad.task1.exceptions;
+package by.vlad.task1.exception;
 
 public class ReaderException extends Exception {
     public ReaderException() {

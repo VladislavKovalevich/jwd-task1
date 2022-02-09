@@ -2,7 +2,7 @@ package by.vlad.task1.service;
 
 import by.vlad.task1.entity.CustomArray;
 
-public interface ArrayOperations {
+public interface ArrayOperation {
     int getMinNumber(CustomArray customArray);
     int getMinNumberStream(CustomArray customArray);
     int getMaxNumber(CustomArray customArray);

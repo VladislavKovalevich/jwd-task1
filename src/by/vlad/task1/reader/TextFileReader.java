@@ -1,7 +1,9 @@
 package by.vlad.task1.reader;
 
-import by.vlad.task1.exceptions.ReaderException;
+import by.vlad.task1.exception.ReaderException;
+
+import java.util.List;
 
 public interface TextFileReader {
-    String readArrayFromFile(String filePath) throws ReaderException;
+    List<String> readArrayFromFile(String filePath) throws ReaderException;
 }

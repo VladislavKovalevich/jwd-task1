@@ -37,8 +37,10 @@ public class CustomArray {
 
     @Override
     public String toString() {
-        return "CustomArray{" +
-                "array=" + Arrays.toString(array) +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("CustomArray{" + "array=").append(Arrays.toString(array)).append('}');
+
+        return stringBuilder.toString();
     }
 }

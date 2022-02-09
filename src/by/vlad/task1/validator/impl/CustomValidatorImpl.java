@@ -1,6 +1,6 @@
-package by.vlad.task1.validation.impl;
+package by.vlad.task1.validator.impl;
 
-import by.vlad.task1.validation.CustomValidator;
+import by.vlad.task1.validator.CustomValidator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,40 +1,38 @@
 package by.vlad.task1.reader.impl;
 
-import by.vlad.task1.exceptions.ReaderException;
+import by.vlad.task1.exception.ReaderException;
 import by.vlad.task1.reader.TextFileReader;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TextFileReaderImpl implements TextFileReader {
-    final static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public String readArrayFromFile(String filePath) throws ReaderException{
-        StringBuilder strings = new StringBuilder();
+    public List<String> readArrayFromFile(String filePath) throws ReaderException{
+        List<String> stringList;
 
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(filePath)))){
-            String line;
 
-            line = bufferedReader.readLine();
-
-            while (line != null) {
-                strings.append(line);
-                line = bufferedReader.readLine();
-            }
+            Stream<String> stringStream = bufferedReader.lines();
+            stringList = stringStream.collect(Collectors.toList());
 
         } catch (FileNotFoundException e){
-            logger.log(Level.ERROR, "File "+ filePath + " was not found", e);
+            //logger.log(Level.ERROR, "File "+ filePath + " was not found", e);
             throw new ReaderException("File "+ filePath + " was not found");
         } catch (IOException e) {
-            logger.log(Level.ERROR, "Failed Input/Output operations while working with file "+ filePath, e);
+            //logger.log(Level.ERROR, "Failed Input/Output operations while working with file "+ filePath, e);
             throw new ReaderException("Failed Input/Output operations while working with file "+ filePath);
         }
 
-        logger.log(Level.INFO, "Содержимое файла: "+ strings);
+        logger.log(Level.INFO, "Содержимое файла: "+ stringList.toString());
 
-        return strings.toString();
+        return stringList;
     }
 }

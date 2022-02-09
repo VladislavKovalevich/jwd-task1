@@ -12,10 +12,6 @@
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern_console}"/>
-            <Filters>
-                <MarkerFilter marker="FLOW" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <MarkerFilter marker="EXCEPTION" onMatch="DENY" onMismatch="ACCEPT"/>
-            </Filters>
         </Console>
 
         <File name="textFile" fileName="logs/log.txt" bufferedIO="true">
